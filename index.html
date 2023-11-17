@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="mouse.css">
+    <script defer src="mouse.js"></script>
+</head>
+<body>
+    
+
+
+
+
+    <div class="fm__container">
+
+        
+        <div class="fm__content">
+            <h1 class="hero__title">FollowMouse</h1>
+            <p id="xaxis">X</p>
+            <p id="yaxis">Y</p>
+            <p id="zaxis">Z</p>
+        </div>
+  
+        <picture>
+            <source media="(min-width:640px)" srcset="https://picsum.photos/id/196/2000" >
+            <img class="image fm__target" data-followmouse-target src="https://picsum.photos/id/196/1280/600" alt="" width="100%" height="100%">
+        </picture>
+     
+    </div>
+
+    <section>
+        <div class="wrapper">
+            <div class="code">
+                <h2>JAVASCRIPT</h2>
+                <pre>
+let fmContainer = document.querySelectorAll(".fm__container");
+
+if(fmContainer)
+fmContainer.forEach(c => {
+    let p = c.querySelector('.fm__target')
+    let x,y;
+
+    c.addEventListener('mousemove', (e)=> {
+        x = (e.pageX - (p.offsetWidth/2 )) * -0.1 // -0.1 => 0.1 change direction
+        y = (e.pageY - (p.offsetHeight/2 )) * -0.1
+        p.style.transform = `scale(1.2) translate(${x}px,${y}px)`
+    })
+
+});
+                </pre>
+                <h2>CSS</h2>
+                <pre>
+.fm__container {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    background-color: #333;
+}
+
+.fm__target {
+    transition: all ease-out 2000ms;
+    height: 100%;
+    width: 100%;
+    transform: scale(1.2);
+    transform-origin: center;
+    object-fit: cover;
+}
+
+@media all and (min-width:640px) {
+    .fm__target {
+        height: auto;
+    }
+}
+                </pre>
+
+                <h2>HTML</h2>
+                <pre>
+&ltdiv class="fm__container">
+    &lth1 class="hero__title">FollowMouse&lt/h1>
+    &ltpicture>
+        &ltsource media="(min-width:640px)" srcset="https://picsum.photos/id/193/2000" >
+        &ltimg class="fm__target" src="https://picsum.photos/id/193/1280/600" alt="" width="100%" height="100%">
+    &lt/picture>
+&lt/div>
+                </pre>
+            </div>
+        </div>
+    </section>
+
+    <div class="fm__container">
+        <h1 class="hero__title">FollowMouse</h1>
+        <picture>
+            <source media="(min-width:640px)" srcset="https://picsum.photos/id/193/2000" >
+            <img class="fm__target" src="https://picsum.photos/id/193/1280/600" alt="" width="100%" height="100%">
+        </picture>
+    </div>
+
+    <section></section>
+    <section></section>
+
+
+</body>
+</html>
